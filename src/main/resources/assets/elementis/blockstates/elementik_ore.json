@@ -1,0 +1,10 @@
+{
+  "variants": {
+      "": [
+        {"model": "elementis:block/elementik_ore"},
+        {"model": "elementis:block/elementik_ore", "y": 90},
+        {"model": "elementis:block/elementik_ore", "y": 180},
+        {"model": "elementis:block/elementik_ore", "y": 270}
+      ]
+  }
+}
