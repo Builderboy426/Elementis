@@ -1,9 +1,9 @@
 package com.builderboy.elementis;
 
-import com.builderboy.elementis.core.ModBlocks;
-import com.builderboy.elementis.core.ModItems;
+import com.builderboy.elementis.core.*;
 import com.builderboy.elementis.core.world.ModWorldFeatures;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLDedicatedServerSetupEvent;
@@ -13,12 +13,18 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 public class SideProxy {
 
     public SideProxy() {
-        FMLJavaModLoadingContext.get().getModEventBus().addListener(SideProxy::commonSetup);
+        IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
+        modEventBus.addListener(SideProxy::commonSetup);
 
-        FMLJavaModLoadingContext.get().getModEventBus().addListener(ModBlocks::registerAll);
-        FMLJavaModLoadingContext.get().getModEventBus().addListener(ModItems::registerAll);
+        modEventBus.addListener(ModBlocks::registerAll);
+        modEventBus.addListener(ModItems::registerAll);
 
-        //FMLJavaModLoadingContext.get().getModEventBus().addListener(ModTileEntities::registerAll);
+        ModTileEntities.TILE_ENTITIES.register(modEventBus);
+        ModContainers.CONTAINERS.register(modEventBus);
+
+        modEventBus.addListener(ModStats::registerAll);
+        ModRecipes.registerRecipeType();
+        ModRecipes.RECIPE_SERIALIZERS.register(modEventBus);
 
         MinecraftForge.EVENT_BUS.addListener(SideProxy::serverStarting);
     }
@@ -36,6 +42,7 @@ public class SideProxy {
         }
 
         private static void clientSetup(FMLClientSetupEvent event) {
+            ModContainers.registerScreens();
 
             //Filters
             /*

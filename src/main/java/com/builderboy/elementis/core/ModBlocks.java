@@ -19,6 +19,7 @@ public class ModBlocks {
     public static Block TEST_BLOCK;
 
     public static Block ELEMENTIK_ORE;
+    public static Block MANIK_ORE;
 
     public static Block ELEMENTAL_ALTAR;
     public static Block ALCHEMICAL_TRANSFUSER;
@@ -29,6 +30,7 @@ public class ModBlocks {
         TEST_BLOCK = register("test_block", new Block(Block.Properties.create(Material.IRON).hardnessAndResistance(3.0f, 3.0f).harvestTool(ToolType.PICKAXE)));
 
         ELEMENTIK_ORE = register("elementik_ore", new ModOreBlock(3));
+        MANIK_ORE = register("manik_ore", new ModOreBlock(2));
 
         ELEMENTAL_ALTAR = register("elemental_altar", new ElementalAltarBlock());
         //ALCHEMICAL_TRANSFUSER = register("alchemical_transfuser", new Block(Block.Properties.create(Material.WOOD).hardnessAndResistance(4.0f, 4.5f).harvestTool(ToolType.AXE)));

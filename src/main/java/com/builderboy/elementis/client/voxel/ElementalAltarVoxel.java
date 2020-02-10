@@ -46,16 +46,4 @@ public class ElementalAltarVoxel {
 
         return shape;
     }
-
-    public static VoxelShape addInk(VoxelShape shape, Direction direction) {
-        VoxelShape newShape;
-
-        VoxelShape inkBase = ShapeHelper.makeCuboidShape(1.5D, 13D, 12D, 4D, 14.5D, 14.5D, direction);
-        VoxelShape inkTop = ShapeHelper.makeCuboidShape(2D, 14.5D, 12.5D, 3.5D, 15.25D, 14D, direction);
-
-        newShape = VoxelShapes.combineAndSimplify(shape, inkBase, IBooleanFunction.OR);
-        newShape = VoxelShapes.combineAndSimplify(newShape, inkTop, IBooleanFunction.OR);
-
-        return newShape;
-    }
 }

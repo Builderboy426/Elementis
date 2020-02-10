@@ -2,6 +2,8 @@
   "item.elementis.test": "Test Item",
   "block.elementis.test_block": "Test Block",
 
+  "item.elementis.ink_bottle": "Ink Bottle",
+
   "item.elementis.elementik_crystal": "Elementik Crystal",
   "item.elementis.elementik_shard": "Elementik Shard",
   "item.elementis.elementik_dust": "Elementik Dust",
@@ -19,6 +21,8 @@
 
   "block.elementis.elemental_altar": "Elemental Altar",
   "block.elementis.elementik_ore": "Elementik Ore",
+
+  "container.altar": "Elemental Altar",
 
   "itemGroup.elementis": "Elementis"
 }

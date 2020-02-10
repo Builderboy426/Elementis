@@ -1,8 +1,11 @@
 package com.builderboy.elementis.common.item;
 
 import com.builderboy.elementis.utils.item.InteractiveItem;
+import com.builderboy.elementis.utils.mana.IItemManaContiner;
+import com.builderboy.elementis.utils.mana.ManaContainerItem;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
@@ -15,28 +18,33 @@ import net.minecraft.world.World;
 import javax.annotation.Nullable;
 import java.util.List;
 
-public class StaffItem extends InteractiveItem {
+public class StaffItem extends ManaContainerItem {
 
     private StaffType type;
 
     public StaffItem(StaffType type) {
-        super();
+        this(type, 0);
+    }
+
+    public StaffItem(StaffType type, int defaultMana) {
         this.type = type;
+        this.defaultMana = defaultMana;
+        this.maxMana = type.calculateStoredMana();
     }
 
     @Override
     public ActionResult<ItemStack> serverRightClick(World world, PlayerEntity player, ItemStack held, boolean isSneaking) {
-        CompoundNBT nbt = held.getTag();
-        if (nbt == null) { nbt= new CompoundNBT(); }
-        if (!nbt.hasUniqueId("mana")) { nbt.putInt("mana", 0); }
-        held.setTag(nbt);
 
-        int mana = nbt.getInt("mana");
-
-        //TODO: Do stuff
+        if (isSneaking) {
+            this.changeMana(held, (200 * this.type.getTier()));
+            return new ActionResult<>(ActionResultType.SUCCESS, held);
+        }
 
         return new ActionResult<>(ActionResultType.PASS, held);
     }
+
+    @Override
+    public void inventoryTick(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected) { this.getDurabilityForDisplay(stack); }
 
     @Override
     public boolean showDurabilityBar(ItemStack stack) { return true; }
@@ -46,23 +54,17 @@ public class StaffItem extends InteractiveItem {
         StaffItem staff = (StaffItem) stack.getItem();
         StaffType type = staff.getType();
 
-        CompoundNBT nbt = stack.getTag();
-        if (nbt == null) { nbt= new CompoundNBT(); }
-        if (!nbt.hasUniqueId("mana")) { nbt.putInt("mana", 0); }
-        stack.setTag(nbt);
+        CompoundNBT nbt = this.getNBT(stack);
 
         int current = nbt.getInt("mana");
         int max = type.calculateStoredMana();
 
-        return 1 - current / max;
+        return 1 - (float)(current / max);
     }
 
     @Override
     public void addInformation(ItemStack stack, @Nullable World world, List<ITextComponent> tooltip, ITooltipFlag flag) {
-        CompoundNBT nbt = stack.getTag();
-        if (nbt == null) { nbt= new CompoundNBT(); }
-        if (!nbt.hasUniqueId("mana")) { nbt.putInt("mana", 0); }
-        stack.setTag(nbt);
+        CompoundNBT nbt = this.getNBT(stack);
 
         int current = nbt.getInt("mana");
         int max = this.type.calculateStoredMana();
@@ -71,7 +73,45 @@ public class StaffItem extends InteractiveItem {
         tooltip.add(info);
     }
 
+    @Override
+    public void updateMana(ItemStack stack, int mana) {
+        CompoundNBT nbt = this.getNBT(stack);
+
+        if (mana < 0) { mana = 0; }
+        else if (mana > this.maxMana) { mana = this.getMaxMana(); }
+
+        nbt.putInt("mana", mana);
+
+        stack.setTag(nbt);
+    }
+
+    @Override
+    public void changeMana(ItemStack stack, int changeBy) {
+        CompoundNBT nbt = this.getNBT(stack);
+        int oldMana = nbt.getInt("mana");
+        this.updateMana(stack, oldMana + changeBy);
+    }
+
+    @Override
+    public int getMana(ItemStack stack) {
+        CompoundNBT nbt = this.getNBT(stack);
+
+        return nbt.getInt("mana");
+    }
+
+    @Override
+    public int getMaxMana() { return this.maxMana; }
+
     public StaffType getType() { return this.type; }
+
+    private CompoundNBT getNBT(ItemStack stack) {
+        CompoundNBT nbt = stack.getTag();
+        if (nbt == null) { nbt= new CompoundNBT(); }
+        if (!nbt.contains("mana")) { nbt.putInt("mana", this.defaultMana); }
+        stack.setTag(nbt);
+
+        return nbt;
+    }
 
     public enum StaffType {
         ELEMENTIK(0),
