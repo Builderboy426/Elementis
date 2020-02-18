@@ -1,38 +1,36 @@
 package com.builderboy.elementis.client.container;
 
 import com.builderboy.elementis.common.item.StaffItem;
-import com.builderboy.elementis.common.recipe.ElementalAltarRecipe;
+import com.builderboy.elementis.common.item.crafting.ElementalAltarRecipe;
 import com.builderboy.elementis.core.ModContainers;
-import com.builderboy.elementis.core.ModRecipes;
 import com.builderboy.elementis.utils.item.slots.ResultSlot;
 import com.builderboy.elementis.utils.item.slots.StaffSlot;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Inventory;
+import net.minecraft.inventory.container.ClickType;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.IRecipeType;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 public class ElementalAltarContainer extends Container {
     private final IInventory inventory = new Inventory(11);
-    private final IRecipeType<ElementalAltarRecipe> recipeType;
+    private ElementalAltarRecipe recipe = null;
     private final World world;
 
     public ElementalAltarContainer(int id, PlayerInventory playerInventory) {
         super(ModContainers.ELEMENTAL_ALTAR.get(), id);
-        this.recipeType = ModRecipes.ALTAR;
         assertInventorySize(inventory, inventory.getSizeInventory());
         this.world = playerInventory.player.world;
 
         //Container (0 - 10)
         for (int i = 0; i < 3; ++i) {
             for (int j = 0; j < 3; ++j) {
-                this.addSlot(new Slot(this.inventory, j * 3 + i, 8 + j *18, 17 + i *18));
+                this.addSlot(new Slot(this.inventory, j * 3 + i, 8 + j * 18, 17 + i * 18));
             }
         }
 
@@ -96,6 +94,39 @@ public class ElementalAltarContainer extends Container {
     }
 
     @Override
+    public ItemStack slotClick(int slotId, int dragType, ClickType clickType, PlayerEntity player) {
+        ItemStack stack = ItemStack.EMPTY;
+
+        if (clickType == ClickType.PICKUP || clickType == ClickType.QUICK_CRAFT) {
+            if (slotId == 10) {
+                if (this.recipe != null) {
+                    ItemStack result = recipe.getResult();
+
+                    shrinkGrid();
+                    if (recipe.getManaCost() > 0) {
+                        ItemStack staffStack = this.getSlot(slotId).getStack();
+                        StaffItem staff = (StaffItem)staffStack.getItem();
+                        staff.changeMana(staffStack, -recipe.getManaCost());
+                    }
+
+                    recipe = null;
+                    return result;
+                }
+            }
+        }
+
+        if (stack == ItemStack.EMPTY) { stack = super.slotClick(slotId, dragType, clickType, player); }
+
+        return stack;
+    }
+
+    @Override
+    public boolean canDragIntoSlot(Slot slot) {
+        if (slot.slotNumber == 9 || slot.slotNumber == 10) { return false; }
+        return true;
+    }
+
+    @Override
     public boolean canInteractWith(PlayerEntity player) {
         return this.inventory.isUsableByPlayer(player);
     }
@@ -111,7 +142,7 @@ public class ElementalAltarContainer extends Container {
         }
     }
 
-    private boolean isStaff(ItemStack stack) { return stack.getItem() instanceof StaffItem; }
+    public StaffItem getStaff() { return hasStaff() ? (StaffItem)inventory.getStackInSlot(9).getItem() : (StaffItem)ItemStack.EMPTY.getItem(); }
 
     @OnlyIn(Dist.CLIENT)
     public int getManaScaled() {
@@ -126,4 +157,20 @@ public class ElementalAltarContainer extends Container {
 
         return 0;
     }
+
+    public void setRecipe(ElementalAltarRecipe recipe) { this.recipe = recipe; }
+
+    private void shrinkGrid() {
+        for (int i = 0; i < 8; i++) {
+            Slot slot = this.getSlot(i);
+            ItemStack stack = slot.getStack();
+
+            if (stack != ItemStack.EMPTY) {
+                stack.shrink(1);
+            }
+        }
+    }
+
+    private boolean isStaff(ItemStack stack) { return stack.getItem() instanceof StaffItem; }
+    private boolean hasStaff() { return !inventory.getStackInSlot(9).isEmpty(); }
 }

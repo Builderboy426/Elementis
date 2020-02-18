@@ -28,7 +28,8 @@ public class ModWorldFeatures {
 
             } else {
 
-                addOre(biome, ModBlocks.ELEMENTIK_ORE.getDefaultState(), 10, 20, TARGET_OVERWORLD, new CountRangeConfig(6, 0, 0, 40));
+                addOre(biome, ModBlocks.ELEMENTIK_ORE.getDefaultState(), 10, 20, TARGET_OVERWORLD, new CountRangeConfig(7, 0, 0, 40));
+                addOre(biome, ModBlocks.MANIK_ORE.getDefaultState(), 6, 10, TARGET_OVERWORLD, new CountRangeConfig(5, 0, 0, 25));
 
             }
         });

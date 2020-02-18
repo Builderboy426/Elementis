@@ -59,7 +59,7 @@ public class StaffItem extends ManaContainerItem {
         int current = nbt.getInt("mana");
         int max = type.calculateStoredMana();
 
-        return 1 - (float)(current / max);
+        return 1 - (double)current / (double)max;
     }
 
     @Override

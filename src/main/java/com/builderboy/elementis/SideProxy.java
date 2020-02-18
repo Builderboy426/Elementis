@@ -1,7 +1,11 @@
 package com.builderboy.elementis;
 
+import com.builderboy.elementis.common.item.crafting.ElementalAltarRecipe;
 import com.builderboy.elementis.core.*;
 import com.builderboy.elementis.core.world.ModWorldFeatures;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
+import net.minecraft.util.NonNullList;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
@@ -23,14 +27,38 @@ public class SideProxy {
         ModContainers.CONTAINERS.register(modEventBus);
 
         modEventBus.addListener(ModStats::registerAll);
-        ModRecipes.registerRecipeType();
-        ModRecipes.RECIPE_SERIALIZERS.register(modEventBus);
+
+        //ModRecipes.registerRecipeType();
+        //ModRecipes.RECIPE_SERIALIZERS.register(modEventBus);
 
         MinecraftForge.EVENT_BUS.addListener(SideProxy::serverStarting);
     }
 
     private static void commonSetup(FMLCommonSetupEvent event) {
         ModWorldFeatures.addFeatures();
+
+        //Elemental Altar Recipe
+        ElementalAltarRecipe.add(
+                //Mana Core
+                new ElementalAltarRecipe(
+                        ElementalAltarRecipe.createIngredientsList(
+                                ItemStack.EMPTY, ItemStack.EMPTY, new ItemStack(Items.STICK),
+                                ItemStack.EMPTY, new ItemStack(ModItems.MANIK_CRYSTAL), ItemStack.EMPTY,
+                                new ItemStack(Items.STICK), ItemStack.EMPTY, ItemStack.EMPTY
+                        ), 0,
+                        new ItemStack(ModItems.MANA_CORE)
+                ),
+
+                //Elementik Staff
+                new ElementalAltarRecipe(
+                        ElementalAltarRecipe.createIngredientsList(
+                                ItemStack.EMPTY, new ItemStack(ModItems.ELEMENTIK_SHARD), ItemStack.EMPTY,
+                                ItemStack.EMPTY, new ItemStack(ModItems.MANA_CORE), new ItemStack(ModItems.ELEMENTIK_SHARD),
+                                new ItemStack(Items.STICK), ItemStack.EMPTY, ItemStack.EMPTY
+                        ), 0,
+                        new ItemStack(ModItems.MANA_CORE)
+                )
+        );
     }
 
     private static void serverStarting(FMLServerStartingEvent event) {}
