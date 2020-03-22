@@ -1,4 +1,4 @@
-package com.builderboy.builderscore.utils;
+package com.builderboy.elementis.world;
 
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.Biome.Category;

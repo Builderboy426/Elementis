@@ -1,6 +1,6 @@
 package com.builderboy.elementis.item;
 
-import com.builderboy.elementis.client.ElementalAltarContainer;
+import com.builderboy.elementis.client.elementalaltar.ElementalAltarContainer;
 import net.minecraft.inventory.CraftingInventory;
 import net.minecraft.item.ItemStack;
 

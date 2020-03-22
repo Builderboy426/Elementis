@@ -1,6 +1,5 @@
 package com.builderboy.elementis.item;
 
-import com.builderboy.builderscore.item.InteractibleItem;
 import com.builderboy.elementis.Elementis;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;

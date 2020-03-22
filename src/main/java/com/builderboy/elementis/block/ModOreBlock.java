@@ -1,4 +1,4 @@
-package com.builderboy.builderscore.block;
+package com.builderboy.elementis.block;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;

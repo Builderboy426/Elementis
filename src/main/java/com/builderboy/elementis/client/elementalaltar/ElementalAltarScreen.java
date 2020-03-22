@@ -1,4 +1,4 @@
-package com.builderboy.elementis.client;
+package com.builderboy.elementis.client.elementalaltar;
 
 import com.builderboy.elementis.Elementis;
 import com.mojang.blaze3d.platform.GlStateManager;

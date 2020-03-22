@@ -1,6 +1,6 @@
-package com.builderboy.elementis.client;
+package com.builderboy.elementis.client.elementalaltar;
 
-import com.builderboy.builderscore.client.ShapeHelper;
+import com.builderboy.elementis.client.ShapeHelper;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.shapes.IBooleanFunction;
 import net.minecraft.util.math.shapes.VoxelShape;

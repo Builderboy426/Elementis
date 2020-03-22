@@ -1,6 +1,7 @@
 package com.builderboy.elementis.registries;
 
 import com.builderboy.elementis.Elementis;
+import com.builderboy.elementis.item.SpellParcelItem;
 import com.builderboy.elementis.item.StaffItem;
 import com.builderboy.elementis.item.StaffItem.StaffType;
 import net.minecraft.item.Item;
@@ -12,6 +13,12 @@ public class ModItemRegistry {
     public static final DeferredRegister<Item> ITEMS = new DeferredRegister<>(ForgeRegistries.ITEMS, Elementis.MODID);
 
     public static final RegistryObject<Item> TEST_ITEM = registerItem("test_item", 1);
+
+    //Tools
+    public static final RegistryObject<Item> GRINDING_STONE = registerItem("grinding_stone");
+    public static final RegistryObject<Item> GRINDING_BOWL = registerItem("grinding_bowl", 1);
+
+    public static final RegistryObject<Item> SPELL_PARCEL = ITEMS.register("spell_parcel", () -> new SpellParcelItem(Elementis.GROUP));
 
     //Staffs
     public static final RegistryObject<Item> ELEMENTIK_STAFF = registerStaffItem("elementik_staff", StaffType.ELEMENTIK);
@@ -45,7 +52,7 @@ public class ModItemRegistry {
 
     //Item Registries
     private static RegistryObject<Item> registerItem(String name) {
-        return registerItem(name, 1);
+        return registerItem(name, 64);
     }
 
     private static RegistryObject<Item> registerItem(String name, int size) {

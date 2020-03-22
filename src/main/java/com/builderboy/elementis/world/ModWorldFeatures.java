@@ -1,6 +1,5 @@
 package com.builderboy.elementis.world;
 
-import com.builderboy.builderscore.utils.WorldFeaturesUtils;
 import com.builderboy.elementis.registries.ModBlockRegistry;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.GenerationStage;

@@ -1,5 +1,6 @@
-package com.builderboy.elementis.client;
+package com.builderboy.elementis.client.elementalaltar;
 
+import com.builderboy.elementis.client.StaffSlot;
 import com.builderboy.elementis.item.ElementalAltarInventory;
 import com.builderboy.elementis.item.StaffItem;
 import com.builderboy.elementis.registries.ModContainerRegistry;
@@ -75,6 +76,17 @@ public class ElementalAltarContainer extends Container implements IRecipeHelperP
         if (slot != null && slot.getHasStack()) {
             ItemStack slotStack = slot.getStack();
             stack = slotStack.copy();
+
+            if (index == 0) {
+                IWorldPosCallable.of(world, player.getPosition()).consume((world, pos) -> {
+                    slotStack.getItem().onCreated(slotStack, world, player);
+                });
+                if (!this.mergeItemStack(slotStack, 10, 46, true)) {
+                    return ItemStack.EMPTY;
+                }
+
+                slot.onSlotChange(slotStack, stack);
+            }
 
             if (index < 11) {
                 if (this.mergeItemStack(slotStack, 11, 47, true)) {

@@ -1,8 +1,8 @@
 package com.builderboy.elementis.block;
 
 import com.builderboy.elementis.Elementis;
-import com.builderboy.elementis.client.ElementalAltarContainer;
-import com.builderboy.elementis.client.ElementalAltarShape;
+import com.builderboy.elementis.client.elementalaltar.ElementalAltarContainer;
+import com.builderboy.elementis.client.elementalaltar.ElementalAltarShape;
 import com.builderboy.elementis.registries.ModStatsRegistry;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;

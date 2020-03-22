@@ -1,6 +1,6 @@
 package com.builderboy.elementis.reicpe;
 
-import com.builderboy.builderscore.utils.CraftingUtils;
+import com.builderboy.elementis.utils.CraftingUtils;
 import com.builderboy.elementis.item.ElementalAltarInventory;
 import com.builderboy.elementis.item.StaffItem;
 import com.builderboy.elementis.registries.ModBlockRegistry;

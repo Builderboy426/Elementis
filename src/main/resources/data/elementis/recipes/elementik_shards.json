@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "shards",
+  "pattern": [
+    "C"
+  ],
+  "key": {
+    "C": {
+      "item": "elementis:elementik_crystal"
+    }
+  },
+  "result": {
+    "item": "elementis:elementik_shard",
+    "count": 3
+  }
+}

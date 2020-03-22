@@ -1,4 +1,4 @@
-package com.builderboy.builderscore.utils;
+package com.builderboy.elementis.utils;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.PlayerEntity;

@@ -1,4 +1,4 @@
-package com.builderboy.builderscore.client;
+package com.builderboy.elementis.client;
 
 import net.minecraft.block.Block;
 import net.minecraft.util.Direction;

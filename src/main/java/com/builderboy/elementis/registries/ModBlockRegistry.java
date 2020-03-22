@@ -1,6 +1,6 @@
 package com.builderboy.elementis.registries;
 
-import com.builderboy.builderscore.block.ModOreBlock;
+import com.builderboy.elementis.block.ModOreBlock;
 import com.builderboy.elementis.Elementis;
 import com.builderboy.elementis.block.ElementalAltarBlock;
 import net.minecraft.block.Block;

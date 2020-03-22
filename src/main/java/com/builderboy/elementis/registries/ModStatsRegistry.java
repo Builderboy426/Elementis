@@ -12,10 +12,12 @@ import net.minecraftforge.registries.ForgeRegistries;
 public class ModStatsRegistry {
 
     public static ResourceLocation INTERACT_WITH_ALTAR;
+    public static ResourceLocation INTERACT_WITH_SPELL_PARCEL;
 
     public static void registerAll(RegistryEvent.Register<StatType<?>> event) {
         if (event.getName().equals(ForgeRegistries.STAT_TYPES.getRegistryName())) {
             INTERACT_WITH_ALTAR = register("interact_with_altar", IStatFormatter.DEFAULT);
+            INTERACT_WITH_SPELL_PARCEL = register("interact_with_spell_parcel", IStatFormatter.DEFAULT);
         }
     }
 

@@ -1,4 +1,4 @@
-package com.builderboy.builderscore.utils;
+package com.builderboy.elementis.utils;
 
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
