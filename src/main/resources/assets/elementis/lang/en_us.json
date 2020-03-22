@@ -1,5 +1,5 @@
 {
-  "item.elementis.test": "Test Item",
+  "item.elementis.test_item": "Test Item",
   "block.elementis.test_block": "Test Block",
 
   "item.elementis.elementik_crystal": "Elementik Crystal",
@@ -17,8 +17,24 @@
   "item.elementis.maldinik_dust": "Maldinik Dust",
   "item.elementis.maldinik_staff": "Maldinik Staff",
 
+  "item.elementis.paldinik_crystal": "Paldinik Crystal",
+  "item.elementis.paldinik_shard": "Paldinik Shard",
+  "item.elementis.paldinik_dust": "Paldinik Dust",
+  "item.elementis.paldinik_staff": "Paldinik Staff",
+
+  "item.elementis.talentik_crystal": "Talentik Crystal",
+  "item.elementis.talentik_shard": "Talentik Shard",
+  "item.elementis.talentik_dust": "Talentik Dust",
+  "item.elementis.talentik_staff": "Talentik Staff",
+
+  "item.elementis.manik_crystal": "Manik Crystal",
+  "item.elementis.mana_core": "Mana Core",
+
   "block.elementis.elemental_altar": "Elemental Altar",
   "block.elementis.elementik_ore": "Elementik Ore",
+  "block.elementis.manik_ore": "Manik Ore",
+
+  "container.elementis.elemental_altar": "Elemental Altar",
 
   "itemGroup.elementis": "Elementis"
 }

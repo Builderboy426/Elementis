@@ -1,0 +1,21 @@
+{
+  "type": "elementis:elemental_altar_shaped",
+  "pattern": [
+    "  S",
+    " M ",
+    "S  "
+  ],
+  "key": {
+    "S": {
+      "item": "minecraft:stick"
+    },
+    "M": {
+      "item": "elementis:manik_crystal"
+    }
+  },
+  "manacost": 0,
+  "result": {
+    "item": "elementis:mana_core",
+    "count": 1
+  }
+}
