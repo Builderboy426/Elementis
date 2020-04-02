@@ -19,7 +19,7 @@ public class ModRecipeRegistry {
     public static final RegistryObject<ElementalAltarShapedRecipe.Serializer<ElementalAltarShapedRecipe>> ELEMENTAL_ALTAR_SHAPED_SERIALIZER = RECIPE_SERIALIZERS.register("elemental_altar_shaped", () -> new ElementalAltarShapedRecipe.Serializer<>(ElementalAltarShapedRecipe::new));
 
     public static IRecipeType<ElementalAltarShapelessRecipe> ELEMENTAL_ALTAR_SHAPELESS;
-    public static final RegistryObject<ElementalAltarShapelessRecipe.Serializer<ElementalAltarShapelessRecipe>> ELEMENTAL_ALTAR_SHAPELESS_SERIALIZER = RECIPE_SERIALIZERS.register("elemental_altar_shaped", () -> new ElementalAltarShapelessRecipe.Serializer<>(ElementalAltarShapelessRecipe::new));
+    public static final RegistryObject<ElementalAltarShapelessRecipe.Serializer<ElementalAltarShapelessRecipe>> ELEMENTAL_ALTAR_SHAPELESS_SERIALIZER = RECIPE_SERIALIZERS.register("elemental_altar_shapeless", () -> new ElementalAltarShapelessRecipe.Serializer<>(ElementalAltarShapelessRecipe::new));
 
     public static void registerRecipeType() {
         //ELEMENTAL_ALTAR = register("elemental_altar");
