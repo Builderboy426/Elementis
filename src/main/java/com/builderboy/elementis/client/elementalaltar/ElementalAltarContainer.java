@@ -1,8 +1,8 @@
 package com.builderboy.elementis.client.elementalaltar;
 
-import com.builderboy.elementis.client.StaffSlot;
-import com.builderboy.elementis.item.ElementalAltarInventory;
-import com.builderboy.elementis.item.StaffItem;
+import com.builderboy.elementis.client.ManaTabletSlot;
+import com.builderboy.elementis.item.ManaTabletItem;
+import com.builderboy.elementis.item.inventory.ElementalAltarInventory;
 import com.builderboy.elementis.registries.ModContainerRegistry;
 import com.builderboy.elementis.registries.ModRecipeRegistry;
 import com.builderboy.elementis.reicpe.ElementalAltarShapedRecipe;
@@ -52,7 +52,7 @@ public class ElementalAltarContainer extends Container implements IRecipeHelperP
             }
         }
 
-        this.addSlot(new StaffSlot(this.craftInventory, 9, 170, 52));
+        this.addSlot(new ManaTabletSlot(this.craftInventory, 9, 170, 52));
         resultSlot = this.addSlot(new CraftingResultSlot(playerInventory.player, this.craftInventory, this.resultInventory, 10, 102, 34));
 
         //Player Inventory (11 - 47)
@@ -77,25 +77,24 @@ public class ElementalAltarContainer extends Container implements IRecipeHelperP
             ItemStack slotStack = slot.getStack();
             stack = slotStack.copy();
 
-            if (index == 0) {
+            if (index == 10) {
                 IWorldPosCallable.of(world, player.getPosition()).consume((world, pos) -> {
                     slotStack.getItem().onCreated(slotStack, world, player);
                 });
-                if (!this.mergeItemStack(slotStack, 10, 46, true)) {
+
+                if (!this.mergeItemStack(slotStack, 11, 47, true)) {
                     return ItemStack.EMPTY;
                 }
 
                 slot.onSlotChange(slotStack, stack);
-            }
-
-            if (index < 11) {
+            } else if (index < 10) {
                 if (this.mergeItemStack(slotStack, 11, 47, true)) {
                     return ItemStack.EMPTY;
                 }
 
                 slot.onSlotChange(slotStack, stack);
             } else {
-                if (isStaff(slotStack)) {
+                if (isManaTablet(slotStack)) {
                     if (!this.mergeItemStack(slotStack, 9, 10, false)) {
                         return ItemStack.EMPTY;
                     } else if (!this.mergeItemStack(slotStack, 0, 8, false)) {
@@ -108,7 +107,7 @@ public class ElementalAltarContainer extends Container implements IRecipeHelperP
                 }
             }
 
-            if (slotStack.getCount() == 0) {
+            if (slotStack.isEmpty()) {
                 slot.putStack(ItemStack.EMPTY);
             } else {
                 slot.onSlotChanged();
@@ -118,7 +117,10 @@ public class ElementalAltarContainer extends Container implements IRecipeHelperP
                 return ItemStack.EMPTY;
             }
 
-            slot.onTake(player, slotStack);
+            ItemStack slotStack2 = slot.onTake(player, slotStack);
+            if (index == 10) {
+                player.dropItem(slotStack2, false);
+            }
         }
 
         return stack;
@@ -165,15 +167,16 @@ public class ElementalAltarContainer extends Container implements IRecipeHelperP
         });
     }
 
-    public StaffItem getStaff() { return hasStaff() ? (StaffItem)craftInventory.getStackInSlot(9).getItem() : (StaffItem)ItemStack.EMPTY.getItem(); }
+    public ManaTabletItem getManaTablet() { return hasManaTablet() ? (ManaTabletItem)craftInventory.getStackInSlot(9).getItem() : (ManaTabletItem)ItemStack.EMPTY.getItem(); }
+    //public StaffItem getStaff() { return hasManaTablet() ? (StaffItem)craftInventory.getStackInSlot(9).getItem() : (StaffItem)ItemStack.EMPTY.getItem(); }
 
     @OnlyIn(Dist.CLIENT)
     public int getManaScaled() {
         ItemStack stack = this.craftInventory.getStackInSlot(9);
-        if (isStaff(stack)) {
-            StaffItem staff = (StaffItem) stack.getItem();
-            int cm = staff.getMana(stack);
-            int mm = staff.getMaxMana();
+        if (isManaTablet(stack)) {
+            ManaTabletItem manaTablet = (ManaTabletItem) stack.getItem();
+            int cm = manaTablet.getMana(stack);
+            int mm = manaTablet.getMaxMana();
 
             return (cm * 60) / mm;
         }
@@ -181,8 +184,11 @@ public class ElementalAltarContainer extends Container implements IRecipeHelperP
         return 0;
     }
 
-    private boolean isStaff(ItemStack stack) { return stack.getItem() instanceof StaffItem; }
-    private boolean hasStaff() { return !craftInventory.getStackInSlot(9).isEmpty(); }
+    private boolean isManaTablet(ItemStack stack) { return stack.getItem() instanceof ManaTabletItem; }
+    private boolean hasManaTablet() { return !craftInventory.getStackInSlot(9).isEmpty(); }
+
+    //private boolean isStaff(ItemStack stack) { return stack.getItem() instanceof StaffItem; }
+    //private boolean hasStaff() { return !craftInventory.getStackInSlot(9).isEmpty(); }
 
     @Override
     public void fillStackedContents(RecipeItemHelper helper) {

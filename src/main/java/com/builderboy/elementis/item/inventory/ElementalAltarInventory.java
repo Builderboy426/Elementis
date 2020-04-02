@@ -1,11 +1,14 @@
-package com.builderboy.elementis.item;
+package com.builderboy.elementis.item.inventory;
 
 import com.builderboy.elementis.client.elementalaltar.ElementalAltarContainer;
+import com.builderboy.elementis.reicpe.ElementalAltarShapedRecipe;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.CraftingInventory;
 import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
 
 public class ElementalAltarInventory extends CraftingInventory {
-    private ItemStack staff = ItemStack.EMPTY;
+    private ItemStack manaTablet = ItemStack.EMPTY;
     private ElementalAltarContainer container;
 
     public ElementalAltarInventory(ElementalAltarContainer container) {
@@ -20,7 +23,7 @@ public class ElementalAltarInventory extends CraftingInventory {
 
     @Override
     public ItemStack getStackInSlot(int id) {
-        return id == 9 ? staff : super.getStackInSlot(id);
+        return id == 9 ? manaTablet : super.getStackInSlot(id);
     }
 
     @Override
@@ -28,7 +31,7 @@ public class ElementalAltarInventory extends CraftingInventory {
         if (id < 9) {
             super.setInventorySlotContents(id, stack);
         } else if (id == 9) {
-            staff = stack;
+            manaTablet = stack;
         }
 
         container.onCraftMatrixChanged(this);
@@ -37,8 +40,8 @@ public class ElementalAltarInventory extends CraftingInventory {
     @Override
     public ItemStack removeStackFromSlot(int id) {
         if (id == 9) {
-            ItemStack copy = staff.copy();
-            staff = ItemStack.EMPTY;
+            ItemStack copy = manaTablet.copy();
+            manaTablet = ItemStack.EMPTY;
             return copy;
         }
 
@@ -46,7 +49,7 @@ public class ElementalAltarInventory extends CraftingInventory {
         return super.removeStackFromSlot(id);
     }
 
-    public ItemStack getStaff() {
-        return staff;
+    public ItemStack getManaTablet() {
+        return manaTablet;
     }
 }

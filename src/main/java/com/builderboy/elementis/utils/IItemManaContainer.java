@@ -1,4 +1,4 @@
-package com.builderboy.elementis.item;
+package com.builderboy.elementis.utils;
 
 import net.minecraft.item.ItemStack;
 

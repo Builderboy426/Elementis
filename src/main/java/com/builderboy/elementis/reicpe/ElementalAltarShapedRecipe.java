@@ -1,7 +1,8 @@
 package com.builderboy.elementis.reicpe;
 
+import com.builderboy.elementis.item.ManaTabletItem;
 import com.builderboy.elementis.utils.CraftingUtils;
-import com.builderboy.elementis.item.ElementalAltarInventory;
+import com.builderboy.elementis.item.inventory.ElementalAltarInventory;
 import com.builderboy.elementis.item.StaffItem;
 import com.builderboy.elementis.registries.ModBlockRegistry;
 import com.builderboy.elementis.registries.ModRecipeRegistry;
@@ -57,11 +58,11 @@ public class ElementalAltarShapedRecipe implements IRecipe<ElementalAltarInvento
         for(int i = 0; i <= inv.getWidth() - this.recipeWidth; ++i) {
             for(int j = 0; j <= inv.getHeight() - this.recipeHeight; ++j) {
                 if (this.checkMatch(inv, i, j, true)) {
-                    return checkStaff(inv);
+                    return checkManaTablet(inv);
                 }
 
                 if (this.checkMatch(inv, i, j, false)) {
-                    return checkStaff(inv);
+                    return checkManaTablet(inv);
                 }
             }
         }
@@ -92,15 +93,15 @@ public class ElementalAltarShapedRecipe implements IRecipe<ElementalAltarInvento
         return true;
     }
 
-    private boolean checkStaff(ElementalAltarInventory inv) {
+    private boolean checkManaTablet(ElementalAltarInventory inv) {
         if (this.manaCost <= 0) {
             return true;
         }
 
         if (inv.getStackInSlot(9) != ItemStack.EMPTY) {
-            ItemStack staffStack = inv.getStackInSlot(9);
-            StaffItem staff = (StaffItem) staffStack.getItem();
-            if (staff.getMana(staffStack) >= this.manaCost) {
+            ItemStack manaTabletStack = inv.getStackInSlot(9);
+            ManaTabletItem manaTablet = (ManaTabletItem) manaTabletStack.getItem();
+            if (manaTablet.getMana(manaTabletStack) >= this.manaCost) {
                 return true;
             }
         }

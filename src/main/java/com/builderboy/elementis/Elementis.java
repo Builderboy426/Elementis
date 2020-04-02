@@ -53,9 +53,7 @@ public class Elementis {
 
     }
 
-    public void setupClient(FMLClientSetupEvent event) {
-        ModContainerRegistry.registerScreen();
-    }
+    public void setupClient(FMLClientSetupEvent event) { ModContainerRegistry.registerScreen(); }
 
     public void setupCommon(FMLCommonSetupEvent event) {
         ModWorldFeatures.addFeatures();

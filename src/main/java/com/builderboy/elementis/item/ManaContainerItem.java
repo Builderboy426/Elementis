@@ -1,9 +1,12 @@
 package com.builderboy.elementis.item;
 
 import com.builderboy.elementis.Elementis;
+import com.builderboy.elementis.utils.IItemManaContainer;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
+
+import java.util.ConcurrentModificationException;
 
 public class ManaContainerItem extends InteractibleItem implements IItemManaContainer {
 
@@ -14,7 +17,6 @@ public class ManaContainerItem extends InteractibleItem implements IItemManaCont
 
     public ManaContainerItem(Properties properties) { super(properties); }
 
-
     public int getMana(ItemStack stack) {
         CompoundNBT nbt = constructNBT(stack);
         return nbt.getInt("mana");
@@ -22,6 +24,7 @@ public class ManaContainerItem extends InteractibleItem implements IItemManaCont
 
     public int getMaxMana() { return maxMana; }
 
+    //update the mana amount
     public void updateMana(ItemStack stack, int mana) {
         CompoundNBT nbt = constructNBT(stack);
 
@@ -37,18 +40,17 @@ public class ManaContainerItem extends InteractibleItem implements IItemManaCont
         stack.setTag(nbt);
     }
 
+    //change the mana amount by a certain value
     public void changeMana(ItemStack stack, int changeBy) {
         CompoundNBT nbt = constructNBT(stack);
         int mana = nbt.getInt("mana");
         this.updateMana(stack, mana + changeBy);
     }
 
+    //Gets and setup the stack's nbt data
     protected CompoundNBT constructNBT(ItemStack stack) {
-        CompoundNBT nbt = stack.getTag();
-        if (nbt == null) {
-            nbt = new CompoundNBT();
-            nbt.putInt("mana", deafultMana);
-        }
+        CompoundNBT nbt = stack.getOrCreateTag();
+        if (!nbt.contains("mana")) { nbt.putInt("mana", deafultMana); }
         stack.setTag(nbt);
 
         return nbt;

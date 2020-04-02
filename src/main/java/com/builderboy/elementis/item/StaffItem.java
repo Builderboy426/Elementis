@@ -3,7 +3,6 @@ package com.builderboy.elementis.item;
 import com.builderboy.elementis.Elementis;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
@@ -36,6 +35,7 @@ public class StaffItem extends ManaContainerItem {
 
         //TODO: Spell Functionality
         //TODO: Check Spell Parcel
+        //TODO: Assemble Multiblock Structures
 
         if (isSneaking) {
             this.changeMana(held, 200);
@@ -92,5 +92,23 @@ public class StaffItem extends ManaContainerItem {
 
         public int getTier() { return tier; }
         public int calculateMaxMana() { return (int)Math.floor((2000 * this.getTier()) - (750 / this.getTier()) + 3); }
+
+        public static StaffType getFromTier(int tier) {
+            switch (tier) {
+                case 1:
+                    return ELEMENTIK;
+                case 2:
+                    return ALDENIK;
+                case 3:
+                    return MALDINIK;
+                case 4:
+                    return PALDINIK;
+                case 5:
+                    return TALENTIK;
+            }
+
+            Elementis.LOGGER.warn("A tier of " + tier + " does not exist!");
+            return ELEMENTIK;
+        }
     }
 }

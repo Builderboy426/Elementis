@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "elementis:elementik_shard"
+    },
+    {
+      "item": "elementis:grinding_stone"
+    },
+    {
+      "item": "elementis:grinding_bowl"
+    }
+  ],
+  "result": {
+    "item": "elementis:elementik_shard",
+    "count": 2
+  }
+}

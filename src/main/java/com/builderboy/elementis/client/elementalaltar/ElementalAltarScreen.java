@@ -12,6 +12,8 @@ public class ElementalAltarScreen extends ContainerScreen<ElementalAltarContaine
 
     public ElementalAltarScreen(ElementalAltarContainer container, PlayerInventory playerInventory, ITextComponent title) {
         super(container, playerInventory, title);
+        this.xSize = 214;
+        this.ySize = 166;
     }
 
     @Override
