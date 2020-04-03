@@ -18,8 +18,11 @@ public class ModBlockRegistry {
 
     public static final RegistryObject<Block> TEST_BLOCK = registerBlock("test_block", new Block(Block.Properties.create(Material.ROCK).hardnessAndResistance(4.0f, 4.0f).harvestTool(ToolType.PICKAXE)));
 
-    public static final RegistryObject<Block> ELEMENTIK_ORE = registerBlock("elementik_ore", new ModOreBlock(0));
-    public static final RegistryObject<Block> MANIK_ORE = registerBlock("manik_ore", new ModOreBlock(0));
+    public static final RegistryObject<Block> MARBLE = registerBlock("marble", new ModOreBlock(0));
+    public static final RegistryObject<Block> SLATE = registerBlock("slate", new ModOreBlock(0));
+
+    public static final RegistryObject<Block> ELEMENTIK_ORE = registerBlock("elementik_ore", new ModOreBlock(1));
+    public static final RegistryObject<Block> MANIK_ORE = registerBlock("manik_ore", new ModOreBlock(1));
 
     public static final RegistryObject<Block> ELEMENTAL_ALTAR = registerBlock("elemental_altar", new ElementalAltarBlock());
 

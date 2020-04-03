@@ -24,6 +24,7 @@ public class ManaTabletItem extends ManaContainerItem {
         super(Elementis.GROUP);
         this.type = type;
         this.size = size;
+        this.maxMana = calculateMaxStoredMana(type, size);
     }
 
     @Override

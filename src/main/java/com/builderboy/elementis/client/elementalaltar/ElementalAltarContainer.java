@@ -13,6 +13,7 @@ import net.minecraft.inventory.CraftResultInventory;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.IRecipeHelperPopulator;
 import net.minecraft.inventory.IRecipeHolder;
+import net.minecraft.inventory.container.ClickType;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.CraftingResultSlot;
 import net.minecraft.inventory.container.Slot;
@@ -145,8 +146,6 @@ public class ElementalAltarContainer extends Container implements IRecipeHelperP
             }
         });
     }
-
-
 
     @Override
     public boolean canDragIntoSlot(Slot slot) {
