@@ -3,7 +3,6 @@ package com.builderboy.elementis.reicpe;
 import com.builderboy.elementis.item.ManaTabletItem;
 import com.builderboy.elementis.utils.CraftingUtils;
 import com.builderboy.elementis.item.inventory.ElementalAltarInventory;
-import com.builderboy.elementis.item.StaffItem;
 import com.builderboy.elementis.registries.ModBlockRegistry;
 import com.builderboy.elementis.registries.ModRecipeRegistry;
 import com.google.gson.JsonObject;

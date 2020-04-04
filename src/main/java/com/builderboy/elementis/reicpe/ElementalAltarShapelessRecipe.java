@@ -1,7 +1,6 @@
 package com.builderboy.elementis.reicpe;
 
 import com.builderboy.elementis.item.ManaTabletItem;
-import com.builderboy.elementis.item.StaffItem;
 import com.builderboy.elementis.item.inventory.ElementalAltarInventory;
 import com.builderboy.elementis.registries.ModBlockRegistry;
 import com.builderboy.elementis.registries.ModRecipeRegistry;
@@ -23,7 +22,6 @@ import net.minecraftforge.registries.ForgeRegistryEntry;
 import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 public class ElementalAltarShapelessRecipe implements IRecipe<ElementalAltarInventory> {
     private final ResourceLocation id;

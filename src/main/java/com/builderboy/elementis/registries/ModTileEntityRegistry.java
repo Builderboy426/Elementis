@@ -1,9 +1,7 @@
 package com.builderboy.elementis.registries;
 
 import com.builderboy.elementis.Elementis;
-import com.google.common.collect.Sets;
 import net.minecraft.tileentity.TileEntityType;
-import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 

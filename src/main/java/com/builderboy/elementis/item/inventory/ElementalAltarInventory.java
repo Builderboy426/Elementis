@@ -1,11 +1,8 @@
 package com.builderboy.elementis.item.inventory;
 
 import com.builderboy.elementis.client.elementalaltar.ElementalAltarContainer;
-import com.builderboy.elementis.reicpe.ElementalAltarShapedRecipe;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.CraftingInventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.world.World;
 
 public class ElementalAltarInventory extends CraftingInventory {
     private ItemStack manaTablet = ItemStack.EMPTY;

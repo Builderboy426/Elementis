@@ -6,8 +6,6 @@ import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 
-import java.util.ConcurrentModificationException;
-
 public class ManaContainerItem extends InteractibleItem implements IItemManaContainer {
 
     protected int deafultMana = 0;
