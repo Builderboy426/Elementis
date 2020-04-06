@@ -27,6 +27,7 @@ public class ManaTabletItem extends ManaContainerItem {
         this.maxMana = calculateMaxStoredMana(type, size);
     }
 
+    //Used to debug the tablet
     @Override
     public ActionResult<ItemStack> serverRightClick(World world, PlayerEntity player, ItemStack held, boolean isSneaking) {
 
@@ -75,10 +76,10 @@ public class ManaTabletItem extends ManaContainerItem {
 
     private int calculateMaxStoredMana(ManaTabletType type, ManaTabletSize size) {
         int t = type.getTier();
-        int s = type.getTier();
+        int s = size.getTier();
 
         double mult = 0.5D * t;
-        int baseMana = ((1500 * s) + (750 / t) + 3);
+        int baseMana = ((1500 * s) + (750 / t) + 1003);
 
         return (int)Math.floor(mult * baseMana);
     }

@@ -1,9 +1,9 @@
 {
   "type": "elementis:elemental_altar_shaped",
   "pattern": [
-    "  S",
+    "S S",
     " M ",
-    "S  "
+    "S S"
   ],
   "key": {
     "S": {
@@ -15,7 +15,7 @@
   },
   "manacost": 0,
   "result": {
-    "item": "elementis:mana_core",
+    "item": "elementis:crude_mana_core",
     "count": 1
   }
 }

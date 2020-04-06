@@ -48,10 +48,10 @@ public class ModItemRegistry {
     public static final RegistryObject<Item> PALDINIK_DUST = registerItem("paldinik_dust");
     public static final RegistryObject<Item> TALENTIK_DUST = registerItem("talentik_dust");
 
-    public static final RegistryObject<Item> CRUDE_MANA_CORE = registerItem("crude_mana_core", 1);
-    public static final RegistryObject<Item> SIMPLE_MANA_CORE = registerItem("simple_mana_core", 1);
-    public static final RegistryObject<Item> MANA_CORE = registerItem("mana_core", 1);
-    public static final RegistryObject<Item> REINFORCED_MANA_CORE = registerItem("reinforced_mana_core", 1);
+    public static final RegistryObject<Item> CRUDE_MANA_CORE = registerItem("crude_mana_core", 16);
+    public static final RegistryObject<Item> SIMPLE_MANA_CORE = registerItem("simple_mana_core", 16);
+    public static final RegistryObject<Item> MANA_CORE = registerItem("mana_core", 16);
+    public static final RegistryObject<Item> REINFORCED_MANA_CORE = registerItem("reinforced_mana_core", 16);
 
     //Mana Storage
     public static final RegistryObject<Item> TINY_CRUDE_MANA_TABLET = registerManaTablet("tiny_crude_mana_tablet", ManaTabletType.CRUDE, ManaTabletSize.TINY);

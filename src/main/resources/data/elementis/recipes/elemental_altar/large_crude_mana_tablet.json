@@ -1,0 +1,24 @@
+{
+  "type": "elementis:elemental_altar_shaped",
+  "pattern": [
+    "LCL",
+    "CTC",
+    "LCL"
+  ],
+  "key": {
+    "T": {
+      "item": "elementis:crude_mana_tablet"
+    },
+    "C": {
+      "item": "elementis:crude_mana_core"
+    },
+    "L": {
+      "tag": "minecraft:logs"
+    }
+  },
+  "manacost": 2750,
+  "result": {
+    "item": "elementis:large_crude_mana_tablet",
+    "count": 1
+  }
+}
