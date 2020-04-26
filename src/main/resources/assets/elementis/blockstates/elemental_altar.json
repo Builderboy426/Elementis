@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "facing=north": { "model": "elementis:block/elemental_altar" },
+    "facing=south": { "model": "elementis:block/elemental_altar", "y": 180 },
+    "facing=east": { "model": "elementis:block/elemental_altar", "y": 90 },
+    "facing=west": { "model": "elementis:block/elemental_altar", "y": 270 }
+  }
+}

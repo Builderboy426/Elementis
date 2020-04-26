@@ -1,0 +1,16 @@
+{
+  "type": "elementis:elemental_altar_shaped",
+  "pattern": [
+    "C"
+  ],
+  "key": {
+    "C": {
+      "item": "elementis:maldinik_crystal"
+    }
+  },
+  "manacost": 0,
+  "result": {
+    "item": "elementis:maldinik_shard",
+    "count": 3
+  }
+}

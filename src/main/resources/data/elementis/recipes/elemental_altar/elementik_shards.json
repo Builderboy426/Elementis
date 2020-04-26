@@ -1,0 +1,16 @@
+{
+  "type": "elementis:elemental_altar_shaped",
+  "pattern": [
+    "C"
+  ],
+  "key": {
+    "C": {
+      "item": "elementis:elementik_crystal"
+    }
+  },
+  "manacost": 0,
+  "result": {
+    "item": "elementis:elementik_shard",
+    "count": 3
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "type": "elementis:elemental_altar_shaped",
+  "pattern": [
+    "C"
+  ],
+  "key": {
+    "C": {
+      "item": "elementis:aldenik_crystal"
+    }
+  },
+  "manacost": 0,
+  "result": {
+    "item": "elementis:aldenik_shard",
+    "count": 3
+  }
+}

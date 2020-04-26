@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "elementis:talentik_shard"
+    },
+    {
+      "item": "elementis:grinding_stone"
+    },
+    {
+      "item": "elementis:grinding_bowl"
+    }
+  ],
+  "result": {
+    "item": "elementis:talentik_dust",
+    "count": 2
+  }
+}

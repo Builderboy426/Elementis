@@ -1,0 +1,19 @@
+{
+  "type": "elementis:elemental_altar_shapeless",
+  "ingredients": [
+    {
+      "item": "elementis:aldenik_shard"
+    },
+    {
+      "item": "elementis:grinding_stone"
+    },
+    {
+      "item": "elementis:grinding_bowl"
+    }
+  ],
+  "manacost": 0,
+  "result": {
+    "item": "elementis:aldenik_dust",
+    "count": 2
+  }
+}

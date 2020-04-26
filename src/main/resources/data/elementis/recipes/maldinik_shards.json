@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "shards",
+  "pattern": [
+    "C"
+  ],
+  "key": {
+    "C": {
+      "item": "elementis:maldinik_crystal"
+    }
+  },
+  "result": {
+    "item": "elementis:maldinik_shard",
+    "count": 3
+  }
+}

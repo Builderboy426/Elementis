@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "",
+  "pattern": [
+    "S S",
+    " S "
+  ],
+  "key": {
+    "S": {
+      "tag": "forge:stone"
+    }
+  },
+  "result": {
+    "item": "elementis:grinding_bowl",
+    "count": 1
+  }
+}
