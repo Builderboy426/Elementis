@@ -1,5 +1,6 @@
 package com.builderboy.elementis.reicpe;
 
+import com.builderboy.elementis.Elementis;
 import com.builderboy.elementis.item.ManaTabletItem;
 import com.builderboy.elementis.utils.CraftingUtils;
 import com.builderboy.elementis.item.inventory.ElementalAltarInventory;
@@ -57,11 +58,11 @@ public class ElementalAltarShapedRecipe implements IRecipe<ElementalAltarInvento
         for(int i = 0; i <= inv.getWidth() - this.recipeWidth; ++i) {
             for(int j = 0; j <= inv.getHeight() - this.recipeHeight; ++j) {
                 if (this.checkMatch(inv, i, j, true)) {
-                    return checkManaTablet(inv);
+                    return true;
                 }
 
                 if (this.checkMatch(inv, i, j, false)) {
-                    return checkManaTablet(inv);
+                    return true;
                 }
             }
         }
@@ -90,22 +91,6 @@ public class ElementalAltarShapedRecipe implements IRecipe<ElementalAltarInvento
         }
 
         return true;
-    }
-
-    private boolean checkManaTablet(ElementalAltarInventory inv) {
-        if (this.manaCost <= 0) {
-            return true;
-        }
-
-        if (inv.getStackInSlot(9) != ItemStack.EMPTY) {
-            ItemStack manaTabletStack = inv.getStackInSlot(9);
-            ManaTabletItem manaTablet = (ManaTabletItem) manaTabletStack.getItem();
-            if (manaTablet.getMana(manaTabletStack) >= this.manaCost) {
-                return true;
-            }
-        }
-
-        return false;
     }
 
     @Override

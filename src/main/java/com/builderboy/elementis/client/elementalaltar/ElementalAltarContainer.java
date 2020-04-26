@@ -1,11 +1,13 @@
 package com.builderboy.elementis.client.elementalaltar;
 
+import com.builderboy.elementis.Elementis;
 import com.builderboy.elementis.client.ManaTabletSlot;
 import com.builderboy.elementis.item.ManaTabletItem;
 import com.builderboy.elementis.item.inventory.ElementalAltarInventory;
 import com.builderboy.elementis.registries.ModContainerRegistry;
 import com.builderboy.elementis.registries.ModRecipeRegistry;
 import com.builderboy.elementis.reicpe.ElementalAltarShapedRecipe;
+import com.builderboy.elementis.reicpe.ElementalAltarShapelessRecipe;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.entity.player.ServerPlayerEntity;
@@ -34,7 +36,7 @@ public class ElementalAltarContainer extends Container implements IRecipeHelperP
     private Slot resultSlot;
     private final PlayerEntity player;
     private final World world;
-    private IRecipe<ElementalAltarInventory> recipe;
+    private int manaCost = 0;
 
     public ElementalAltarContainer(int id, PlayerInventory playerInventory) {
         super(ModContainerRegistry.ELEMENTAL_ALTAR.get(), id);
@@ -80,6 +82,12 @@ public class ElementalAltarContainer extends Container implements IRecipeHelperP
             if (index == 10) {
                 IWorldPosCallable.of(world, player.getPosition()).consume((world, pos) -> {
                     slotStack.getItem().onCreated(slotStack, world, player);
+
+                    ItemStack tabletStack = ElementalAltarContainer.this.craftInventory.getStackInSlot(9);
+                    ManaTabletItem tablet = (ManaTabletItem) tabletStack.getItem();
+                    tablet.changeMana(tabletStack, -ElementalAltarContainer.this.manaCost);
+
+                    this.manaCost = 0;
                 });
 
                 if (!this.mergeItemStack(slotStack, 11, 47, true)) {
@@ -130,14 +138,62 @@ public class ElementalAltarContainer extends Container implements IRecipeHelperP
     public void onCraftMatrixChanged(IInventory inventory) {
         IWorldPosCallable.of(world, player.getPosition()).consume((world, pos) -> {
             if (!world.isRemote) {
+
                 ServerPlayerEntity playerMP = (ServerPlayerEntity) player;
                 ItemStack stack = ItemStack.EMPTY;
-                Optional<ElementalAltarShapedRecipe> optional = world.getServer().getRecipeManager().getRecipe(ModRecipeRegistry.ELEMENTAL_ALTAR_SHAPED, craftInventory, world);
-                if (optional.isPresent()) {
-                    ElementalAltarShapedRecipe recipe = optional.get();
-                    if (resultInventory.canUseRecipe(world, playerMP, recipe)) {
+                Optional<ElementalAltarShapedRecipe> shapedRecipe = world.getServer().getRecipeManager().getRecipe(ModRecipeRegistry.ELEMENTAL_ALTAR_SHAPED, craftInventory, world);
+                Optional<ElementalAltarShapelessRecipe> shapelessRecipe = world.getServer().getRecipeManager().getRecipe(ModRecipeRegistry.ELEMENTAL_ALTAR_SHAPELESS, craftInventory, world);
+
+                //Shaped Recipe
+                if (shapedRecipe.isPresent()) {
+
+                    Elementis.LOGGER.info("Recipe is Present");
+
+                    ElementalAltarShapedRecipe recipe = shapedRecipe.get();
+                    int manaCost = recipe.getManaCost();
+
+                    if (manaCost == 0) { //If the cost is 0
+
                         stack = recipe.getCraftingResult(craftInventory);
+
+                    } else if (manaCost > 0) { //If the cost id greater than 0
+
+                        if (ElementalAltarContainer.this.hasManaTablet()) {
+
+                            int mana = ElementalAltarContainer.this.getManaTablet().getMana(ElementalAltarContainer.this.getManaTabletStack());
+
+                            if (mana >= manaCost) {
+
+                                stack = recipe.getCraftingResult(craftInventory);
+                            }
+                        }
                     }
+                }
+
+                //Shapeless Recipe
+                if (shapelessRecipe.isPresent()) {
+                    Elementis.LOGGER.info("Recipe is Present");
+
+                    ElementalAltarShapelessRecipe recipe = shapelessRecipe.get();
+                    int manaCost = recipe.getManaCost();
+
+                    if (manaCost == 0) { //If the cost is 0
+
+                        stack = recipe.getCraftingResult(craftInventory);
+
+                    } else if (manaCost > 0) { //If the cost id greater than 0
+
+                        if (ElementalAltarContainer.this.hasManaTablet()) {
+
+                            int mana = ElementalAltarContainer.this.getManaTablet().getMana(ElementalAltarContainer.this.getManaTabletStack());
+
+                            if (mana >= manaCost) {
+
+                                stack = recipe.getCraftingResult(craftInventory);
+                            }
+                        }
+                    }
+
                 }
 
                 resultInventory.setInventorySlotContents(resultSlot.slotNumber, stack);
@@ -149,6 +205,7 @@ public class ElementalAltarContainer extends Container implements IRecipeHelperP
     @Override
     public boolean canDragIntoSlot(Slot slot) {
         if (slot.slotNumber == 9 || slot.slotNumber == 10) { return false; }
+
         return true;
     }
 
@@ -160,17 +217,24 @@ public class ElementalAltarContainer extends Container implements IRecipeHelperP
     @Override
     public void onContainerClosed(PlayerEntity player) {
         super.onContainerClosed(player);
+
         IWorldPosCallable.of(world, player.getPosition()).consume((world, pos) -> {
             this.clearContainer(player, world, craftInventory);
         });
     }
 
-    public ManaTabletItem getManaTablet() { return hasManaTablet() ? (ManaTabletItem)craftInventory.getStackInSlot(9).getItem() : (ManaTabletItem)ItemStack.EMPTY.getItem(); }
+    public ManaTabletItem getManaTablet() { return hasManaTablet() ? (ManaTabletItem)this.getManaTabletStack().getItem() : (ManaTabletItem)ItemStack.EMPTY.getItem(); }
+    public ItemStack getManaTabletStack() { return hasManaTablet() ? this.craftInventory.getStackInSlot(9) : ItemStack.EMPTY; }
+
+    public int getManaTabletMana() {
+        return hasManaTablet() ? this.getManaTablet().getMana(this.getManaTabletStack()) : 0;
+    }
     //public StaffItem getStaff() { return hasManaTablet() ? (StaffItem)craftInventory.getStackInSlot(9).getItem() : (StaffItem)ItemStack.EMPTY.getItem(); }
 
     @OnlyIn(Dist.CLIENT)
     public int getManaScaled() {
         ItemStack stack = this.craftInventory.getStackInSlot(9);
+
         if (isManaTablet(stack)) {
             ManaTabletItem manaTablet = (ManaTabletItem) stack.getItem();
             int cm = manaTablet.getMana(stack);

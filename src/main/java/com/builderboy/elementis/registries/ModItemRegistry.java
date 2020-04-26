@@ -49,30 +49,34 @@ public class ModItemRegistry {
     public static final RegistryObject<Item> TALENTIK_DUST = registerItem("talentik_dust");
 
     public static final RegistryObject<Item> CRUDE_MANA_CORE = registerItem("crude_mana_core", 16);
-    public static final RegistryObject<Item> SIMPLE_MANA_CORE = registerItem("simple_mana_core", 16);
-    public static final RegistryObject<Item> MANA_CORE = registerItem("mana_core", 16);
-    public static final RegistryObject<Item> REINFORCED_MANA_CORE = registerItem("reinforced_mana_core", 16);
+
+    //TODO: Mana Core Upgrading
+    //public static final RegistryObject<Item> SIMPLE_MANA_CORE = registerItem("simple_mana_core", 16);
+    //public static final RegistryObject<Item> MANA_CORE = registerItem("mana_core", 16);
+    //public static final RegistryObject<Item> REINFORCED_MANA_CORE = registerItem("reinforced_mana_core", 16);
 
     //Mana Storage
     public static final RegistryObject<Item> TINY_CRUDE_MANA_TABLET = registerManaTablet("tiny_crude_mana_tablet", ManaTabletType.CRUDE, ManaTabletSize.TINY);
-    public static final RegistryObject<Item> SMALL_CRUDE_MANA_TABLET = registerManaTablet("small_crude_mana_tablet", ManaTabletType.CRUDE, ManaTabletSize.SMALL);
-    public static final RegistryObject<Item> CRUDE_MANA_TABLET = registerManaTablet("crude_mana_tablet", ManaTabletType.CRUDE, ManaTabletSize.NORMAL);
-    public static final RegistryObject<Item> LARGE_CRUDE_MANA_TABLET = registerManaTablet("large_crude_mana_tablet", ManaTabletType.CRUDE, ManaTabletSize.LARGE);
 
-    public static final RegistryObject<Item> TINY_SIMPLE_MANA_TABLET = registerManaTablet("tiny_simple_mana_tablet", ManaTabletType.SIMPLE, ManaTabletSize.TINY);
-    public static final RegistryObject<Item> SMALL_SIMPLE_MANA_TABLET = registerManaTablet("small_simple_mana_tablet", ManaTabletType.SIMPLE, ManaTabletSize.SMALL);
-    public static final RegistryObject<Item> SIMPLE_MANA_TABLET = registerManaTablet("simple_mana_tablet", ManaTabletType.SIMPLE, ManaTabletSize.NORMAL);
-    public static final RegistryObject<Item> LARGE_SIMPLE_MANA_TABLET = registerManaTablet("large_simple_mana_tablet", ManaTabletType.SIMPLE, ManaTabletSize.LARGE);
+    //TODO: Upgrade Mana Tablet
+    //public static final RegistryObject<Item> SMALL_CRUDE_MANA_TABLET = registerManaTablet("small_crude_mana_tablet", ManaTabletType.CRUDE, ManaTabletSize.SMALL);
+    //public static final RegistryObject<Item> CRUDE_MANA_TABLET = registerManaTablet("crude_mana_tablet", ManaTabletType.CRUDE, ManaTabletSize.NORMAL);
+    //public static final RegistryObject<Item> LARGE_CRUDE_MANA_TABLET = registerManaTablet("large_crude_mana_tablet", ManaTabletType.CRUDE, ManaTabletSize.LARGE);
 
-    public static final RegistryObject<Item> TINY_MANA_TABLET = registerManaTablet("tiny_mana_tablet", ManaTabletType.NORMAL, ManaTabletSize.TINY);
-    public static final RegistryObject<Item> SMALL_MANA_TABLET = registerManaTablet("small_mana_tablet", ManaTabletType.NORMAL, ManaTabletSize.SMALL);
-    public static final RegistryObject<Item> MANA_TABLET = registerManaTablet("mana_tablet", ManaTabletType.NORMAL, ManaTabletSize.NORMAL);
-    public static final RegistryObject<Item> LARGE_MANA_TABLET = registerManaTablet("large_mana_tablet", ManaTabletType.NORMAL, ManaTabletSize.LARGE);
+    //public static final RegistryObject<Item> TINY_SIMPLE_MANA_TABLET = registerManaTablet("tiny_simple_mana_tablet", ManaTabletType.SIMPLE, ManaTabletSize.TINY);
+    //public static final RegistryObject<Item> SMALL_SIMPLE_MANA_TABLET = registerManaTablet("small_simple_mana_tablet", ManaTabletType.SIMPLE, ManaTabletSize.SMALL);
+    //public static final RegistryObject<Item> SIMPLE_MANA_TABLET = registerManaTablet("simple_mana_tablet", ManaTabletType.SIMPLE, ManaTabletSize.NORMAL);
+    //public static final RegistryObject<Item> LARGE_SIMPLE_MANA_TABLET = registerManaTablet("large_simple_mana_tablet", ManaTabletType.SIMPLE, ManaTabletSize.LARGE);
 
-    public static final RegistryObject<Item> TINY_REINFORCED_MANA_TABLET = registerManaTablet("tiny_reinforced_mana_tablet", ManaTabletType.REINFORCED, ManaTabletSize.TINY);
-    public static final RegistryObject<Item> SMALL_REINFORCED_MANA_TABLET = registerManaTablet("small_reinforced_mana_tablet", ManaTabletType.REINFORCED, ManaTabletSize.SMALL);
-    public static final RegistryObject<Item> REINFORCED_MANA_TABLET = registerManaTablet("reinforced_mana_tablet", ManaTabletType.REINFORCED, ManaTabletSize.NORMAL);
-    public static final RegistryObject<Item> LARGE_REINFORCED_MANA_TABLET = registerManaTablet("large_reinforced_mana_tablet", ManaTabletType.REINFORCED, ManaTabletSize.LARGE);
+    //public static final RegistryObject<Item> TINY_MANA_TABLET = registerManaTablet("tiny_mana_tablet", ManaTabletType.NORMAL, ManaTabletSize.TINY);
+    //public static final RegistryObject<Item> SMALL_MANA_TABLET = registerManaTablet("small_mana_tablet", ManaTabletType.NORMAL, ManaTabletSize.SMALL);
+    //public static final RegistryObject<Item> MANA_TABLET = registerManaTablet("mana_tablet", ManaTabletType.NORMAL, ManaTabletSize.NORMAL);
+    //public static final RegistryObject<Item> LARGE_MANA_TABLET = registerManaTablet("large_mana_tablet", ManaTabletType.NORMAL, ManaTabletSize.LARGE);
+
+    //public static final RegistryObject<Item> TINY_REINFORCED_MANA_TABLET = registerManaTablet("tiny_reinforced_mana_tablet", ManaTabletType.REINFORCED, ManaTabletSize.TINY);
+    //public static final RegistryObject<Item> SMALL_REINFORCED_MANA_TABLET = registerManaTablet("small_reinforced_mana_tablet", ManaTabletType.REINFORCED, ManaTabletSize.SMALL);
+    //public static final RegistryObject<Item> REINFORCED_MANA_TABLET = registerManaTablet("reinforced_mana_tablet", ManaTabletType.REINFORCED, ManaTabletSize.NORMAL);
+    //public static final RegistryObject<Item> LARGE_REINFORCED_MANA_TABLET = registerManaTablet("large_reinforced_mana_tablet", ManaTabletType.REINFORCED, ManaTabletSize.LARGE);
 
     //Item Registries
     private static RegistryObject<Item> registerItem(String name) {

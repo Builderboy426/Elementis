@@ -68,23 +68,7 @@ public class ElementalAltarShapelessRecipe implements IRecipe<ElementalAltarInve
             }
         }
 
-        return i == this.ingredients.size() && (isSimple ? helper.canCraft(this, (IntList)this) : RecipeMatcher.findMatches(inputs, this.ingredients) != null) && checkManaTablet(inv);
-    }
-
-    private boolean checkManaTablet(ElementalAltarInventory inv) {
-        if (this.manaCost <= 0) {
-            return true;
-        }
-
-        if (inv.getStackInSlot(9) != ItemStack.EMPTY) {
-            ItemStack manaTabletStack = inv.getStackInSlot(9);
-            ManaTabletItem manaTablet = (ManaTabletItem) manaTabletStack.getItem();
-            if (manaTablet.getMana(manaTabletStack) >= this.manaCost) {
-                return true;
-            }
-        }
-
-        return false;
+        return i == this.ingredients.size() && (isSimple ? helper.canCraft(this, null) : RecipeMatcher.findMatches(inputs, this.ingredients) != null);
     }
 
     @Override

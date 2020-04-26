@@ -26,7 +26,7 @@ public class StaffItem extends ManaContainerItem {
     public StaffItem(StaffType type, int defaultMana) {
         super(Elementis.GROUP);
         this.type = type;
-        this.deafultMana = defaultMana;
+        this.defaultMana = defaultMana;
         this.maxMana = type.calculateMaxMana();
     }
 

@@ -78,8 +78,8 @@ public class ManaTabletItem extends ManaContainerItem {
         int t = type.getTier();
         int s = size.getTier();
 
-        double mult = 0.5D * t;
-        int baseMana = ((1500 * s) + (750 / t) + 1003);
+        double mult = 0.5D * s;
+        int baseMana = ((1500 * t) + (750 / t) + 1003);
 
         return (int)Math.floor(mult * baseMana);
     }

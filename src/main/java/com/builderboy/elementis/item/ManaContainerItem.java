@@ -8,7 +8,7 @@ import net.minecraft.nbt.CompoundNBT;
 
 public class ManaContainerItem extends InteractibleItem implements IItemManaContainer {
 
-    protected int deafultMana = 0;
+    protected int defaultMana = 0;
     protected int maxMana;
 
     public ManaContainerItem(ItemGroup group) { super(group); }
@@ -48,7 +48,7 @@ public class ManaContainerItem extends InteractibleItem implements IItemManaCont
     //Gets and setup the stack's nbt data
     protected CompoundNBT constructNBT(ItemStack stack) {
         CompoundNBT nbt = stack.getOrCreateTag();
-        if (!nbt.contains("mana")) { nbt.putInt("mana", deafultMana); }
+        if (!nbt.contains("mana")) { nbt.putInt("mana", defaultMana); }
         stack.setTag(nbt);
 
         return nbt;
