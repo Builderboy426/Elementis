@@ -1,12 +1,12 @@
 package com.builderboy.elementis.item;
 
 import com.builderboy.elementis.Elementis;
-import com.builderboy.elementis.utils.IItemManaContainer;
+import com.builderboy.elementis.mana.IManaChargeable;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 
-public class ManaContainerItem extends InteractibleItem implements IItemManaContainer {
+public class ManaContainerItem extends InteractibleItem implements IManaChargeable {
 
     protected int defaultMana = 0;
     protected int maxMana;
@@ -43,6 +43,13 @@ public class ManaContainerItem extends InteractibleItem implements IItemManaCont
         CompoundNBT nbt = constructNBT(stack);
         int mana = nbt.getInt("mana");
         this.updateMana(stack, mana + changeBy);
+    }
+
+    @Override
+    public void chargeMana(ItemStack stack, int mana) {
+        if (this.canCharge()) {
+            this.changeMana(stack, mana);
+        }
     }
 
     //Gets and setup the stack's nbt data

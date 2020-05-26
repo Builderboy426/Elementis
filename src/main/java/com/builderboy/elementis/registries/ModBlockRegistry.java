@@ -1,5 +1,6 @@
 package com.builderboy.elementis.registries;
 
+import com.builderboy.elementis.block.ManaCoreBlock;
 import com.builderboy.elementis.block.ModOreBlock;
 import com.builderboy.elementis.Elementis;
 import com.builderboy.elementis.block.ElementalAltarBlock;
@@ -25,6 +26,9 @@ public class ModBlockRegistry {
     public static final RegistryObject<Block> MANIK_ORE = registerBlock("manik_ore", new ModOreBlock(1));
 
     public static final RegistryObject<Block> ELEMENTAL_ALTAR = registerBlock("elemental_altar", new ElementalAltarBlock());
+
+    //Mana Network
+    public static final RegistryObject<Block> MANA_CORE = registerBlock("mana_core", new ManaCoreBlock());
 
     private static <B extends Block> RegistryObject<Block> registerBlock(String name, B block) {
         RegistryObject<Block> reg = BLOCKS.register(name, () -> block);

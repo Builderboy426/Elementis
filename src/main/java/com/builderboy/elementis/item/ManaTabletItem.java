@@ -84,6 +84,9 @@ public class ManaTabletItem extends ManaContainerItem {
         return (int)Math.floor(mult * baseMana);
     }
 
+    @Override
+    public boolean canCharge() { return true; }
+
     public ManaTabletType getType() { return this.type; }
     public ManaTabletSize getSize() { return this.size; }
 
