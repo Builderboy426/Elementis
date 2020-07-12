@@ -18,7 +18,8 @@ public class ModItemRegistry {
     public static final RegistryObject<Item> MALDINIK_CRYSTAL = ITEMS.register("maldinik_crystal", BaseItem::new);
     public static final RegistryObject<Item> PALDINIK_CRYSTAL = ITEMS.register("paldinik_crystal", BaseItem::new);
     public static final RegistryObject<Item> TALENTIK_CRYSTAL = ITEMS.register("talentik_crystal", BaseItem::new);
+    public static final RegistryObject<Item> ZANIC_CRYSTAL = ITEMS.register("zanik_crystal", BaseItem::new);
 
     public static final RegistryObject<Item> MANIK_CRYSTAL = ITEMS.register("manik_crystal", BaseItem::new);
-
+    public static final RegistryObject<Item> KALTHENIK_CRYSTAL = ITEMS.register("kalthenik_crystal", BaseItem::new);
 }
