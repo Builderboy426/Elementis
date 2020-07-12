@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "elementis:block/test_block"
+    }
+  }
+}

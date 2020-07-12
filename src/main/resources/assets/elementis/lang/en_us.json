@@ -3,67 +3,11 @@
   "block.elementis.test_block": "Test Block",
 
   "item.elementis.elementik_crystal": "Elementik Crystal",
-  "item.elementis.elementik_shard": "Elementik Shard",
-  "item.elementis.elementik_dust": "Elementik Dust",
-  "item.elementis.elementik_staff": "Elementik Staff",
-
   "item.elementis.aldenik_crystal": "Aldenik Crystal",
-  "item.elementis.aldenik_shard": "Aldenik Shard",
-  "item.elementis.aldenik_dust": "Aldenik Dust",
-  "item.elementis.aldenik_staff": "Aldenik Staff",
-
   "item.elementis.maldinik_crystal": "Maldinik Crystal",
-  "item.elementis.maldinik_shard": "Maldinik Shard",
-  "item.elementis.maldinik_dust": "Maldinik Dust",
-  "item.elementis.maldinik_staff": "Maldinik Staff",
-
   "item.elementis.paldinik_crystal": "Paldinik Crystal",
-  "item.elementis.paldinik_shard": "Paldinik Shard",
-  "item.elementis.paldinik_dust": "Paldinik Dust",
-  "item.elementis.paldinik_staff": "Paldinik Staff",
-
   "item.elementis.talentik_crystal": "Talentik Crystal",
-  "item.elementis.talentik_shard": "Talentik Shard",
-  "item.elementis.talentik_dust": "Talentik Dust",
-  "item.elementis.talentik_staff": "Talentik Staff",
-
   "item.elementis.manik_crystal": "Manik Crystal",
-
-  "item.elementis.crude_mana_core": "Crude Mana Core",
-  "item.elementis.simple_mana_core": "Simple Mana Core",
-  "item.elementis.mana_core": "Mana Core",
-  "item.elementis.reinforced_mana_core": "Reinforced Mana Core",
-
-  "item.elementis.tiny_crude_mana_tablet": "Tiny Crude Mana Tablet",
-  "item.elementis.small_crude_mana_tablet": "Small Crude Mana Tablet",
-  "item.elementis.crude_mana_tablet": "Crude Mana Tablet",
-  "item.elementis.large_crude_mana_tablet": "Large Crude Mana Tablet",
-
-  "item.elementis.tiny_simple_mana_tablet": "Tiny Simple Mana Tablet",
-  "item.elementis.small_simple_mana_tablet": "Small Simple Mana Tablet",
-  "item.elementis.simple_mana_tablet": "Simple Mana Tablet",
-  "item.elementis.large_simple_mana_tablet": "Large Simple Mana Tablet",
-
-  "item.elementis.tiny_mana_tablet": "Tiny Mana Tablet",
-  "item.elementis.small_mana_tablet": "Small Mana Tablet",
-  "item.elementis.mana_tablet": "Mana Tablet",
-  "item.elementis.large_mana_tablet": "Large Mana Tablet",
-
-  "item.elementis.tiny_reinforced_mana_tablet": "Tiny Reinforced Mana Tablet",
-  "item.elementis.small_reinforced_mana_tablet": "Small Reinforced Mana Tablet",
-  "item.elementis.reinforced_mana_tablet": "Reinforced Mana Tablet",
-  "item.elementis.large_reinforced_mana_tablet": "Large Reinforced Mana Tablet",
-
-
-  "block.elementis.elemental_altar": "Elemental Altar",
-
-  "block.elementis.elementik_ore": "Elementik Ore",
-  "block.elementis.manik_ore": "Manik Ore",
-
-  "block.elementis.marble": "Marble",
-  "block.elementis.slate": "Slate",
-
-  "container.elementis.elemental_altar": "Elemental Altar",
 
   "itemGroup.elementis": "Elementis"
 }

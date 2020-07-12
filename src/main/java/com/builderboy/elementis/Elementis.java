@@ -1,7 +1,7 @@
 package com.builderboy.elementis;
 
-import com.builderboy.elementis.registries.*;
-import com.builderboy.elementis.world.ModWorldFeatures;
+import com.builderboy.elementis.registry.ModBlockRegistry;
+import com.builderboy.elementis.registry.ModItemRegistry;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
@@ -40,23 +40,25 @@ public class Elementis {
         ModBlockRegistry.BLOCKS.register(modEventbus);
         ModItemRegistry.ITEMS.register(modEventbus);
 
-        ModTileEntityRegistry.TILE_ENTITIES.register(modEventbus);
-        ModContainerRegistry.CONTAINERS.register(modEventbus);
+        //ModTileEntityRegistry.TILE_ENTITIES.register(modEventbus);
+        //ModContainerRegistry.CONTAINERS.register(modEventbus);
 
-        ModRecipeRegistry.registerRecipeType();
-        ModRecipeRegistry.RECIPE_SERIALIZERS.register(modEventbus);
+        //ModRecipeRegistry.registerRecipeType();
+        //ModRecipeRegistry.RECIPE_SERIALIZERS.register(modEventbus);
 
-        modEventbus.addListener(ModStatsRegistry::registerAll);
+        //modEventbus.addListener(ModStatsRegistry::registerAll);
     }
 
     public void interModEvent(InterModProcessEvent event) {
 
     }
 
-    public void setupClient(FMLClientSetupEvent event) { ModContainerRegistry.registerScreen(); }
+    public void setupClient(FMLClientSetupEvent event) {
+        //ModContainerRegistry.registerScreen();
+    }
 
     public void setupCommon(FMLCommonSetupEvent event) {
-        ModWorldFeatures.addFeatures();
+        //ModWorldFeatures.addFeatures();
     }
 
     @Nonnull
