@@ -7,7 +7,12 @@
   "item.elementis.maldinik_crystal": "Maldinik Crystal",
   "item.elementis.paldinik_crystal": "Paldinik Crystal",
   "item.elementis.talentik_crystal": "Talentik Crystal",
+  "item.elementis.zanik_crystal": "Zanik Crystal",
+
+  "item.elementis.kalthenik_crystal": "Kalthenik Crystal",
   "item.elementis.manik_crystal": "Manik Crystal",
+
+  "block.elementis.elemental_altar": "Elemental Altar",
 
   "itemGroup.elementis": "Elementis"
 }
