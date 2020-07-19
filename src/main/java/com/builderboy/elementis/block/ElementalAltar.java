@@ -1,10 +1,8 @@
 package com.builderboy.elementis.block;
 
+import com.builderboy.elementis.item.StaffItem;
 import com.builderboy.elementis.utils.ShapeHelper;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockRenderType;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.HorizontalBlock;
+import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BlockItemUseContext;
@@ -36,8 +34,21 @@ public class ElementalAltar extends BaseBlock {
     public ActionResultType onBlockActivated(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult ray) {
         if (player.getHeldItemMainhand() != ItemStack.EMPTY) {
             ItemStack held = player.getHeldItemMainhand();
+            Direction facing = state.get(FACING);
 
-            //TODO: add the conversion to elemental worktable using a staff (any)
+            //TODO: add the conversion to elemental worktable or station using a staff (any)
+            if (!world.isRemote) {
+                if (held.getItem() instanceof StaffItem) {
+                    StaffItem staff = (StaffItem) held.getItem();
+
+                    //TODO: Check if blocks are ready for worktable
+                    //TODO: Check if blocks are ready for workstation
+                    boolean wsBuilt = staff.constructMultiblock(world, pos, held, "elemental_workstation", 350);
+                    if (!wsBuilt) { staff.constructMultiblock(world, pos, held, "elemental_worktable", 150); }
+
+                    return ActionResultType.SUCCESS;
+                }
+            }
         }
 
         //TODO: add the elemental altar container and gui functionality
@@ -72,7 +83,7 @@ public class ElementalAltar extends BaseBlock {
 
     @Override
     public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
-        return state.get(FACING) == Direction.NORTH || state.get(FACING) == Direction.SOUTH ? SHAPES[0] : SHAPES[1];
+        return state.get(FACING).getAxis() == Direction.Axis.Z ? SHAPES[0] : SHAPES[1];
     }
 
     private static VoxelShape[] createVoxelShape() {

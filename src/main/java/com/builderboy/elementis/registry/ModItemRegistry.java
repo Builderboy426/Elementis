@@ -2,6 +2,8 @@ package com.builderboy.elementis.registry;
 
 import com.builderboy.elementis.Elementis;
 import com.builderboy.elementis.item.BaseItem;
+import com.builderboy.elementis.item.ManaContainerItem;
+import com.builderboy.elementis.item.StaffItem;
 import net.minecraft.item.Item;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
@@ -22,4 +24,10 @@ public class ModItemRegistry {
 
     public static final RegistryObject<Item> MANIK_CRYSTAL = ITEMS.register("manik_crystal", BaseItem::new);
     public static final RegistryObject<Item> KALTHENIK_CRYSTAL = ITEMS.register("kalthenik_crystal", BaseItem::new);
+
+    //Staffs
+    public static final RegistryObject<Item> ELEMENTIK_STAFF = ITEMS.register("elementik_staff", () -> new StaffItem(250));
+
+    //Misc.
+    public static final RegistryObject<Item> MANA_CORE = ITEMS.register("mana_core", () -> new ManaContainerItem(50));
 }

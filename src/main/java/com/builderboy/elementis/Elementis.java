@@ -4,6 +4,7 @@ import com.builderboy.elementis.registry.ModBlockRegistry;
 import com.builderboy.elementis.registry.ModItemRegistry;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.ModContainer;
@@ -27,7 +28,7 @@ public class Elementis {
     public static final ItemGroup GROUP = new ItemGroup(MODID) {
         @Override
         public ItemStack createIcon() {
-            return new ItemStack(ModItemRegistry.TEST_ITEM.get());
+            return new ItemStack(ModItemRegistry.ELEMENTIK_STAFF.get());
         }
     };
 

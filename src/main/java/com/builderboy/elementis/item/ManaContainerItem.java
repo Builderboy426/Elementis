@@ -2,16 +2,29 @@ package com.builderboy.elementis.item;
 
 import com.builderboy.elementis.Elementis;
 import com.builderboy.elementis.mana.IManaChargeable;
+import net.minecraft.client.resources.I18n;
+import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.ActionResultType;
+import net.minecraft.util.Hand;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.world.World;
+
+import javax.annotation.Nullable;
+import java.util.List;
 
 public class ManaContainerItem extends BaseItem implements IManaChargeable {
     private int defaultMana = 0;
     private int maxMana;
 
-    public ManaContainerItem() {
-        super(new Item.Properties().group(Elementis.GROUP).maxStackSize(1));
+    public ManaContainerItem(int maxMana) {
+        super(new Item.Properties().maxStackSize(1).group(Elementis.GROUP));
+        this.maxMana = maxMana;
     }
 
     public int getMana(ItemStack stack) {
@@ -19,6 +32,46 @@ public class ManaContainerItem extends BaseItem implements IManaChargeable {
         return nbt.getInt("mana");
     }
 
+    @Override
+    public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity player, Hand hand) {
+        ItemStack held = player.getHeldItemMainhand();
+
+        if (!world.isRemote) {
+            ManaContainerItem mci = (ManaContainerItem)held.getItem();
+
+            if (player.isCrouching()) {
+                mci.changeMana(held, (mci.getMaxMana() / 25));
+
+                return new ActionResult<>(ActionResultType.SUCCESS, held);
+            }
+        }
+
+        return new ActionResult<>(ActionResultType.PASS, held);
+    }
+
+    @Override
+    public boolean showDurabilityBar(ItemStack stack) { return true; }
+
+    @Override
+    public double getDurabilityForDisplay(ItemStack stack) {
+        ManaContainerItem mci = (ManaContainerItem)stack.getItem();
+
+        double durability = ((double)mci.getMana(stack) / (double)mci.getMaxMana());
+
+        return 1.0D - durability;
+    }
+
+    @Override
+    public void addInformation(ItemStack stack, @Nullable World world, List<ITextComponent> components, ITooltipFlag flag) {
+        ManaContainerItem mci = (ManaContainerItem) stack.getItem();
+
+        int current = mci.getMana(stack);
+        int max = mci.getMaxMana();
+
+        String text = I18n.format(current + "/" + max);
+        ITextComponent info = new StringTextComponent(text);
+        components.add(info);
+    }
 
     public int getMaxMana() { return this.maxMana; }
 
