@@ -8,7 +8,7 @@ public class BaseItem extends Item {
         super(new Item.Properties().group(Elementis.GROUP));
     }
 
-    public BaseItem(Item.Properties properties) {
+    public BaseItem(Properties properties) {
         super(properties);
     }
 }

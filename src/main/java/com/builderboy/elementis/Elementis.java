@@ -1,23 +1,18 @@
 package com.builderboy.elementis;
 
-import com.builderboy.elementis.registry.ModBlockRegistry;
 import com.builderboy.elementis.registry.ModItemRegistry;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.NonNullList;
+import net.minecraft.item.Items;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.ModContainer;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
-import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.minecraftforge.fml.event.lifecycle.InterModProcessEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import javax.annotation.Nonnull;
 import java.util.Optional;
 
 @Mod(Elementis.MODID)
@@ -28,41 +23,21 @@ public class Elementis {
     public static final ItemGroup GROUP = new ItemGroup(MODID) {
         @Override
         public ItemStack createIcon() {
-            return new ItemStack(ModItemRegistry.ELEMENTIK_STAFF.get());
+            return new ItemStack(ModItemRegistry.ELEMENTIK_CRYSTAL.get());
         }
     };
 
     public Elementis() {
-        IEventBus modEventbus = FMLJavaModLoadingContext.get().getModEventBus();
-        modEventbus.addListener(this::setupClient);
-        modEventbus.addListener(this::setupCommon);
-        modEventbus.addListener(this::interModEvent);
+        IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
-        ModBlockRegistry.BLOCKS.register(modEventbus);
-        ModItemRegistry.ITEMS.register(modEventbus);
+        //Adds all the events to the forge event listener
+        ElementisEvents.INSTANCE.addEventListeners(eventBus);
 
-        //ModTileEntityRegistry.TILE_ENTITIES.register(modEventbus);
-        //ModContainerRegistry.CONTAINERS.register(modEventbus);
-
-        //ModRecipeRegistry.registerRecipeType();
-        //ModRecipeRegistry.RECIPE_SERIALIZERS.register(modEventbus);
-
-        //modEventbus.addListener(ModStatsRegistry::registerAll);
+        //Register Items and Blocks
+        ModItemRegistry.ITEMS.register(eventBus);
     }
 
-    public void interModEvent(InterModProcessEvent event) {
-
-    }
-
-    public void setupClient(FMLClientSetupEvent event) {
-        //ModContainerRegistry.registerScreen();
-    }
-
-    public void setupCommon(FMLCommonSetupEvent event) {
-        //ModWorldFeatures.addFeatures();
-    }
-
-    @Nonnull
+    //Get the version of the mod
     public static String getVersion() {
         Optional<? extends ModContainer> o = ModList.get().getModContainerById(MODID);
         if (o.isPresent()) {
@@ -71,10 +46,12 @@ public class Elementis {
         return "NONE";
     }
 
+    //Is the mod a development version
     public static boolean isDevBuild() {
         return !getVersion().equals("NONE");
     }
 
+    //Get the mod's resource location
     public static ResourceLocation getLocation(String path) {
         return new ResourceLocation(MODID, path);
     }

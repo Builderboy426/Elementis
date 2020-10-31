@@ -1,7 +1,9 @@
 package com.builderboy.elementis.item;
 
 import com.builderboy.elementis.Elementis;
-import com.builderboy.elementis.mana.IManaChargeable;
+import com.builderboy.elementis.utils.CrystalType;
+import com.builderboy.elementis.utils.IManaChargeable;
+import com.builderboy.elementis.utils.IManaContainer;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.PlayerEntity;
@@ -18,18 +20,14 @@ import net.minecraft.world.World;
 import javax.annotation.Nullable;
 import java.util.List;
 
-public class ManaContainerItem extends BaseItem implements IManaChargeable {
-    private int defaultMana = 0;
-    private int maxMana;
+public class ManaContainerItem extends BaseItem implements IManaContainer, IManaChargeable {
+    private CrystalType crystalType;
+    private int maxMana, defaultMana = 0;
 
-    public ManaContainerItem(int maxMana) {
+    public ManaContainerItem(int maxMana, CrystalType type) {
         super(new Item.Properties().maxStackSize(1).group(Elementis.GROUP));
-        this.maxMana = maxMana;
-    }
-
-    public int getMana(ItemStack stack) {
-        CompoundNBT nbt = constructNBT(stack);
-        return nbt.getInt("mana");
+        this.maxMana = (int)(maxMana * (type.getManaMultiplier()));
+        this.crystalType = type;
     }
 
     @Override

@@ -1,9 +1,8 @@
-package com.builderboy.elementis.mana;
+package com.builderboy.elementis.utils;
 
 import net.minecraft.item.ItemStack;
 
 public interface IManaChargeable {
-
     //Charge the item with the inputted mana
     void chargeMana(ItemStack stack, int mana);
 
