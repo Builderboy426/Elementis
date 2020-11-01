@@ -31,6 +31,4 @@ public class ElementisEvents {
     public void setupCommon(FMLCommonSetupEvent event) {
         //ModWorldFeatures.addFeatures();
     }
-
-    public void
 }
