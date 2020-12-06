@@ -1,5 +1,6 @@
 package com.builderboy.elementis;
 
+import com.builderboy.elementis.registry.ModBlockRegistry;
 import com.builderboy.elementis.registry.ModItemRegistry;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
@@ -34,6 +35,7 @@ public class Elementis {
         ElementisEvents.INSTANCE.addEventListeners(eventBus);
 
         //Register Items and Blocks
+        ModBlockRegistry.BLOCKS.register(eventBus);
         ModItemRegistry.ITEMS.register(eventBus);
     }
 

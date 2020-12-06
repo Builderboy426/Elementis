@@ -1,7 +1,6 @@
 package com.builderboy.elementis.item;
 
 import com.builderboy.elementis.Elementis;
-import com.builderboy.elementis.utils.CrystalType;
 import com.builderboy.elementis.utils.IManaChargeable;
 import com.builderboy.elementis.utils.IManaContainer;
 import net.minecraft.client.resources.I18n;
@@ -21,13 +20,11 @@ import javax.annotation.Nullable;
 import java.util.List;
 
 public class ManaContainerItem extends BaseItem implements IManaContainer, IManaChargeable {
-    private CrystalType crystalType;
     private int maxMana, defaultMana = 0;
 
-    public ManaContainerItem(int maxMana, CrystalType type) {
+    public ManaContainerItem(int maxMana) {
         super(new Item.Properties().maxStackSize(1).group(Elementis.GROUP));
-        this.maxMana = (int)(maxMana * (type.getManaMultiplier()));
-        this.crystalType = type;
+        this.maxMana = maxMana;
     }
 
     @Override
@@ -73,6 +70,7 @@ public class ManaContainerItem extends BaseItem implements IManaContainer, IMana
 
     public int getMaxMana() { return this.maxMana; }
 
+    //Sets the item's mana value with the inputted mana value
     public void updateMana(ItemStack stack, int mana) {
         CompoundNBT nbt = constructNBT(stack);
 
@@ -88,13 +86,14 @@ public class ManaContainerItem extends BaseItem implements IManaContainer, IMana
         stack.setTag(nbt);
     }
 
-
+    //Changes the mana value by the changeBy value
     public void changeMana(ItemStack stack, int changeBy) {
         CompoundNBT nbt = constructNBT(stack);
         int mana = nbt.getInt("mana");
         this.updateMana(stack, mana + changeBy);
     }
 
+    //Charges the item's mana with the amount given
     @Override
     public void chargeMana(ItemStack stack, int mana) {
         if (this.canCharge()) {
@@ -102,6 +101,7 @@ public class ManaContainerItem extends BaseItem implements IManaContainer, IMana
         }
     }
 
+    //Make the item's NBT if not present
     protected CompoundNBT constructNBT(ItemStack stack) {
         CompoundNBT nbt = stack.getOrCreateTag();
         if (!nbt.contains("mana")) { nbt.putInt("mana", defaultMana); }

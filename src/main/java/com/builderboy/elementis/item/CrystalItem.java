@@ -1,8 +1,8 @@
 package com.builderboy.elementis.item;
 
 import com.builderboy.elementis.registry.ModItemRegistry;
-import com.builderboy.elementis.utils.CrystalType;
 import net.minecraft.entity.item.ItemEntity;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
@@ -17,16 +17,17 @@ public class CrystalItem extends BaseItem {
     @Override
     public boolean onEntityItemUpdate(ItemStack stack, ItemEntity entity) {
         World world = entity.getEntityWorld();
+        Item item = stack.getItem();
 
-        //Execute on the server
-        if (!world.isRemote()) {
-            //Check if the given item is a crystal
-            CrystalItem crystal = stack.getItem() instanceof CrystalItem ? (CrystalItem) stack.getItem() : null;
+        //If the world is executing on server side
+        if (!world.isRemote) {
+            if (entity.isInWater()) {
+                //Check it the item is a CrystalItem
+                if (item instanceof CrystalItem) {
+                    CrystalItem crystal = (CrystalItem) item;
+                    CrystalType type = crystal.getType();
 
-            if (crystal != null) {
-                //Convert an Elementik Crystal to a Manik Crystal if in water
-                if (entity.isInWater()) {
-                    if (crystal.getType() == CrystalType.ELEMENTIK) {
+                    if (type == CrystalType.ELEMENTIK) {
                         ItemStack manikCrystal = new ItemStack(ModItemRegistry.MANIK_CRYSTAL.get(), stack.getCount());
                         ItemEntity manikEntity = new ItemEntity(world, entity.getPosX(), entity.getPosY(), entity.getPosZ(), manikCrystal);
 
@@ -40,11 +41,21 @@ public class CrystalItem extends BaseItem {
                 }
             }
         }
-
         return false;
     }
 
     public CrystalType getType() {
         return this.type;
+    }
+
+    public enum CrystalType {
+        ELEMENTIK,
+        ALDENIK,
+        MALDINIK,
+        PALDINIK,
+        TALENTIK,
+        ZANIK,
+        MANIK,
+        KALTHENIK
     }
 }

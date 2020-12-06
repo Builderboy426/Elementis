@@ -1,18 +1,24 @@
 package com.builderboy.elementis;
 
-import net.minecraftforge.eventbus.api.Event;
+import com.builderboy.elementis.item.CrystalItem;
+import com.builderboy.elementis.item.CrystalItem.CrystalType;
+import com.builderboy.elementis.registry.ModItemRegistry;
+import net.minecraft.entity.item.ItemEntity;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
+import net.minecraftforge.event.entity.item.ItemTossEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModProcessEvent;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.function.Consumer;
-
+@Mod.EventBusSubscriber
 public class ElementisEvents {
     public static final ElementisEvents INSTANCE = new ElementisEvents();
-    private static final List<Consumer<? extends Event>> EVENTS = new ArrayList<>();
 
     public void addEventListeners(IEventBus bus) {
         bus.addListener(this::setupClient);
@@ -31,4 +37,6 @@ public class ElementisEvents {
     public void setupCommon(FMLCommonSetupEvent event) {
         //ModWorldFeatures.addFeatures();
     }
+
+
 }
